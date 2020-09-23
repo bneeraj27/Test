@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        .row{
+            margin:30px;
+        }
+        .form-control {
+            height: 60px;
+        }
+        #Value {
+            height: 60px;
+            font-size: 30px;
+            vertical-align: bottom;
+            text-align: right;
+            padding-right:16px;
+        }
+        .container{
+            background-color: #B2BEB5;
+            height: 90vh;
+        }
+        .row .col-3 button{
+            font-style: italic;
+            font-size: 30px;
+            background-color:#343a40;
+        }
+        button:hover{
+            box-shadow: 10px 5px;
+        }
+        h1{
+            color:whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 align="center"  >Calculator</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-control text-danger" style="background-color:#343a40;">
+                    <div id="Value">0</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <button onclick="PushText(this);" class="form-control btn text-danger ">1</button>
+            </div>
+            <div class="col-3">
+                <button onclick="PushText(this);" class="form-control btn text-danger"  >2</button>
+            </div>
+            <div class="col-3">
+                <button onclick="PushText(this);" class="form-control btn text-danger"  >3</button>
+            </div>
+            <div class="col-3">
+                <button onclick="PushText(this);" class="form-control btn text-danger"  >+</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <button  onclick="PushText(this);" class="form-control btn text-danger"  >4</button>
+            </div>
+            <div class="col-3">
+                <button  onclick="PushText(this);" class="form-control btn text-danger"  >5</button>
+            </div>
+            <div class="col-3">
+                <button  onclick="PushText(this);" class="form-control btn text-danger"  >6</button>
+            </div>
+            <div class="col-3">
+                <button  onclick="PushText(this);" class="form-control btn text-danger"  >-</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <button  onclick="PushText(this);" class="form-control btn text-danger"  >7</button>
+            </div>
+            <div class="col-3">
+                <button  onclick="PushText(this);" class="form-control btn text-danger"  >8</button>
+            </div>
+            <div class="col-3">
+                <button  onclick="PushText(this);" class="form-control btn text-danger"  >9</button>
+            </div>
+            <div class="col-3">
+                <button  onclick="PushText(this);" class="form-control btn text-danger"  >*</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <button  onclick="PushText(this);" class="form-control btn text-danger"  >/</button>
+            </div>
+            <div class="col-3">
+                <button onclick="PushText(this);"  class="form-control btn text-danger"  >0</button>
+            </div>
+            <div class="col-3">
+                <button onclick="PushText(this);"  class="form-control btn text-danger"  >=</button>
+            </div>
+            <div class="col-3">
+                <button onclick="PushText(this);"  class="form-control btn text-danger"  >.</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <button  onclick="Delete(this);" class="form-control btn text-danger"  ><-</button>
+            </div>
+            <div class="col-3">
+                <button onclick="PushText(this);"  class="form-control btn text-danger" style="background-color:#343a40;">%</button>
+            </div>
+            <div class="col-6">
+                <button onclick="PushText(this);"  class="form-control bg-warning text-white">AC</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var Value = document.getElementById('Value');
+        function Delete(object)
+        {
+            Value.innerHTML = Value.innerHTML.slice(0,Value.innerHTML.length-1);
+        }
+        function PushText(object)
+        {
+            var ans = object.innerHTML;
+            if(ans == ".")
+            {
+                var st = Value.innerHTML;
+                var c=0;
+                
+                for(var i=0;i<st.length;i++)
+                {
+                    if(st[i] == ".")
+                    {
+                        c++;
+                    }
+                    if(st[i] == "+"||st[i] == "-"||st[i] == "*"||st[i] == "/"||st[i] == "%")
+                    {
+                        c = 0;
+                    }
+                }
+                if(c < 1)
+                {
+                    Value.innerHTML += ans;
+                }
+            }
+            else if(ans == "=")
+            {   
+                Value.innerHTML = eval(Value.innerHTML);
+            }
+            else if(ans == "AC")
+            {
+                Value.innerHTML ='0';
+            }
+            else{
+                if (Value.innerHTML == '0') 
+                {
+                    Value.innerHTML = ans; 
+                } 
+                else {
+                    Value.innerHTML += ans;   
+                }
+            }
+        }
+    </script>
+</body>
+</html>
